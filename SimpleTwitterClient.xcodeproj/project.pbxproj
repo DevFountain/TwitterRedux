@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		E917A0CD1E9ED22100579A0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917A0CC1E9ED22100579A0C /* AppDelegate.swift */; };
-		E917A0CF1E9ED22100579A0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917A0CE1E9ED22100579A0C /* ViewController.swift */; };
 		E917A0D21E9ED22100579A0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E917A0D01E9ED22100579A0C /* Main.storyboard */; };
 		E917A0D41E9ED22100579A0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E917A0D31E9ED22100579A0C /* Assets.xcassets */; };
 		E917A0D71E9ED22100579A0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E917A0D51E9ED22100579A0C /* LaunchScreen.storyboard */; };
+		E92BF7391E9ED3420055AE49 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92BF7381E9ED3420055AE49 /* LoginViewController.swift */; };
+		E92BF73C1E9ED3560055AE49 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92BF73B1E9ED3560055AE49 /* ApiKey.swift */; };
+		E92BF73E1E9ED3620055AE49 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92BF73D1E9ED3620055AE49 /* TwitterClient.swift */; };
+		E92BF7401E9ED49C0055AE49 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = E92BF73F1E9ED49C0055AE49 /* Podfile.lock */; };
 		EEB8D252E56DCC163E82E758 /* Pods_SimpleTwitterClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2B3AF902189D8D2B4331 /* Pods_SimpleTwitterClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,11 +24,15 @@
 		DB67D84D0AD8DAC71CC65CE1 /* Pods-SimpleTwitterClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleTwitterClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleTwitterClient/Pods-SimpleTwitterClient.release.xcconfig"; sourceTree = "<group>"; };
 		E917A0C91E9ED22100579A0C /* SimpleTwitterClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleTwitterClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E917A0CC1E9ED22100579A0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E917A0CE1E9ED22100579A0C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E917A0D11E9ED22100579A0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E917A0D31E9ED22100579A0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E917A0D61E9ED22100579A0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E917A0D81E9ED22100579A0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E92BF7381E9ED3420055AE49 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E92BF73B1E9ED3560055AE49 /* ApiKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
+		E92BF73D1E9ED3620055AE49 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
+		E92BF73F1E9ED49C0055AE49 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		E92BF7411E9ED4B00055AE49 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +67,8 @@
 		E917A0C01E9ED22100579A0C = {
 			isa = PBXGroup;
 			children = (
+				E92BF73F1E9ED49C0055AE49 /* Podfile.lock */,
+				E92BF7411E9ED4B00055AE49 /* README.md */,
 				E917A0CB1E9ED22100579A0C /* SimpleTwitterClient */,
 				E917A0CA1E9ED22100579A0C /* Products */,
 				93FE7E448C856EA6F86C6226 /* Pods */,
@@ -78,14 +87,24 @@
 		E917A0CB1E9ED22100579A0C /* SimpleTwitterClient */ = {
 			isa = PBXGroup;
 			children = (
+				E92BF73A1E9ED3490055AE49 /* API */,
 				E917A0CC1E9ED22100579A0C /* AppDelegate.swift */,
-				E917A0CE1E9ED22100579A0C /* ViewController.swift */,
+				E92BF7381E9ED3420055AE49 /* LoginViewController.swift */,
 				E917A0D01E9ED22100579A0C /* Main.storyboard */,
 				E917A0D31E9ED22100579A0C /* Assets.xcassets */,
 				E917A0D51E9ED22100579A0C /* LaunchScreen.storyboard */,
 				E917A0D81E9ED22100579A0C /* Info.plist */,
 			);
 			path = SimpleTwitterClient;
+			sourceTree = "<group>";
+		};
+		E92BF73A1E9ED3490055AE49 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E92BF73B1E9ED3560055AE49 /* ApiKey.swift */,
+				E92BF73D1E9ED3620055AE49 /* TwitterClient.swift */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +171,7 @@
 			files = (
 				E917A0D71E9ED22100579A0C /* LaunchScreen.storyboard in Resources */,
 				E917A0D41E9ED22100579A0C /* Assets.xcassets in Resources */,
+				E92BF7401E9ED49C0055AE49 /* Podfile.lock in Resources */,
 				E917A0D21E9ED22100579A0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,7 +231,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E917A0CF1E9ED22100579A0C /* ViewController.swift in Sources */,
+				E92BF73E1E9ED3620055AE49 /* TwitterClient.swift in Sources */,
+				E92BF7391E9ED3420055AE49 /* LoginViewController.swift in Sources */,
+				E92BF73C1E9ED3560055AE49 /* ApiKey.swift in Sources */,
 				E917A0CD1E9ED22100579A0C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +398,7 @@
 				E917A0DD1E9ED22100579A0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
