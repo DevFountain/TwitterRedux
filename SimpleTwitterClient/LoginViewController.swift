@@ -10,9 +10,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    var user: User!
+
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -22,7 +25,21 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonTap(_ sender: Any) {
-        TwitterClient.sharedInstance.doTwitterOAuth()
+        TwitterClient.sharedInstance.authTwitterClient(sender: self) {
+            self.performSegue(withIdentifier: "ShowTweets", sender: self)
+        }
+
+//        User.getCurrentAccount { (user: User?, error: Error?) in
+//            self.user = user
+//            print("User: \(self.user.name!)")
+//        }
+//
+//        Tweet.getHomeTimeline { (tweets: [Tweet]?, error: Error?) in
+//            self.tweets = tweets
+//            for tweet in self.tweets {
+//                print("Tweet: \(tweet.text!)")
+//            }
+//        }
     }
 
     /*

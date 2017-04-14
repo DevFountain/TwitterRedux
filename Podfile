@@ -8,8 +8,7 @@ target 'SimpleTwitterClient' do
   use_frameworks!
 
   # Pods for SimpleTwitterClient
-  pod 'Alamofire', '~> 4.4'
-  pod 'OAuthSwift', '~> 1.1.0'
   pod 'OAuthSwiftAlamofire'
+  pod 'AlamofireImage', '~> 3.1'
 
 end
