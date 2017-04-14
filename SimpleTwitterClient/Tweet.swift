@@ -11,39 +11,26 @@ import UIKit
 class Tweet: NSObject {
 
     var profileImageURL: URL?
-
-
-
+    var screenName: String?
+    var createdAt: Date?
     var text: String?
-    var timestamp: Date?
-    var retweetCount: Int?
-    var favoritesCount: Int?
 
     init(dictionary: NSDictionary) {
-        let profileImageURLString = dictionary["profile_image_url_https"] as? String
-        if profileImageURLString != nil {
-            profileImageURL = URL(string: profileImageURLString!)
-        } else {
-            profileImageURL = nil
+        let user = dictionary["user"] as? NSDictionary
+
+        if let profileImageURLString = user?["profile_image_url_https"] as? String {
+            profileImageURL = URL(string: profileImageURLString)
         }
 
+        screenName = user?["screen_name"] as? String
 
-
-
-
-        text = dictionary["text"] as? String
-
-        let timestampString = dictionary["created_at"] as? String
-        if let timestampString = timestampString {
+        if let createdAtString = dictionary["created_at"] as? String {
             let formatter = DateFormatter()
             formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-
-            timestamp = formatter.date(from: timestampString)
+            createdAt = formatter.date(from: createdAtString)
         }
 
-        retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
-
-        favoritesCount = (dictionary["favourites_count"] as? Int) ?? 0
+        text = dictionary["text"] as? String
     }
 
     class func getTweets(dictionaries: [NSDictionary]) -> [Tweet] {

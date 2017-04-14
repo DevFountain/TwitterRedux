@@ -21,11 +21,13 @@ class TwitterClient: SessionManager {
 
         self.adapter = oauthSwift.requestAdapter
 
-        oauthSwift.authorize(withCallbackURL: URL(string: "simple-twitter-client://oauth-callback/twitter")!, success: { (credential, response, parameters) in
-            print("authorized")
-            completion()
-        }) { (error) in
-            print("not authorized - \(error.localizedDescription)")
+        if let url = URL(string: "simple-twitter-client://oauth-callback/twitter") {
+            oauthSwift.authorize(withCallbackURL: url, success: { (credential, response, parameters) in
+                print("authorized")
+                completion()
+            }) { (error) in
+                print("not authorized - \(error.localizedDescription)")
+            }
         }
     }
 
