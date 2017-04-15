@@ -16,7 +16,7 @@ class TwitterClient {
 
     private let oauthSwift = OAuth1Swift(consumerKey: consumerKey, consumerSecret: consumerSecret, requestTokenUrl: "https://api.twitter.com/oauth/request_token", authorizeUrl: "https://api.twitter.com/oauth/authorize", accessTokenUrl: "https://api.twitter.com/oauth/access_token")
 
-    func authTwitterClient(sender: UIViewController, completion: @escaping () -> Void) {
+    func getAuthorization(sender: UIViewController, completion: @escaping () -> Void) {
         oauthSwift.authorizeURLHandler = SafariURLHandler(viewController: sender, oauthSwift: oauthSwift)
         oauthSwift.authorize(withCallbackURL: URL(string: "simple-twitter-client://oauth-callback/twitter")!, success: { (credential, response, parameters) in
 
@@ -24,7 +24,7 @@ class TwitterClient {
             let string = client.serialize
             defaults.set(string, forKey: "OAuthClient")
 
-            self.getCurrentUser(completion: { (user: User?) in
+            self.verifyCredentials(completion: { (user: User?) in
                 User.currentUser = user
             })
 
@@ -35,7 +35,7 @@ class TwitterClient {
         }
     }
 
-    func getCurrentUser(completion: @escaping (User?) -> Void) {
+    func verifyCredentials(completion: @escaping (User?) -> Void) {
         let string = defaults.object(forKey: "OAuthClient") as! String
         let client = ClientDeserializer.deserialize(string)
 
@@ -62,6 +62,20 @@ class TwitterClient {
                     completion(Tweet.getTweets(dictionaries: response))
                 }
             case .failure (let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    func postStatusUpdate(parameters: Dictionary<String, String>) {
+        let string = defaults.object(forKey: "OAuthClient") as! String
+        let client = ClientDeserializer.deserialize(string)
+
+        Alamofire.request(client.makeRequest(.POST, url: "https://api.twitter.com/1.1/statuses/update.json", parameters: parameters)).validate().responseData { (response) in
+            switch response.result {
+            case .success:
+                print("success")
+            case .failure(let error):
                 print(error.localizedDescription)
             }
         }

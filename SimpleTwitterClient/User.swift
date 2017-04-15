@@ -58,8 +58,8 @@ class User: NSObject {
         }
     }
 
-    static func getCurrentUser(completion: @escaping (User?) -> Void) {
-        _ = TwitterClient.sharedInstance.getCurrentUser(completion: completion)
+    static func verifyCredentials(completion: @escaping (User?) -> Void) {
+        _ = TwitterClient.sharedInstance.verifyCredentials(completion: completion)
     }
 
 }

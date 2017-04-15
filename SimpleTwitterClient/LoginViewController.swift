@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonTap(_ sender: Any) {
-        TwitterClient.sharedInstance.authTwitterClient(sender: self) {
+        TwitterClient.sharedInstance.getAuthorization(sender: self) {
             self.performSegue(withIdentifier: "ShowTweets", sender: self)
         }
     }
