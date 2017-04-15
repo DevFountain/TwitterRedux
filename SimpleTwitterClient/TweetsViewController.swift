@@ -15,12 +15,11 @@ class TweetsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.clearsSelectionOnViewWillAppear = false
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: .valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
 
-        Tweet.getHomeTimeline { (tweets: [Tweet]?) in
-            self.tweets = tweets
-            self.tableView.reloadData()
-        }
+        getTweets()
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,6 +57,19 @@ class TweetsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //
+    }
+
+    func getTweets() {
+        Tweet.getHomeTimeline { (tweets: [Tweet]?) in
+            self.tweets = tweets
+            self.tableView.reloadData()
+        }
+    }
+
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        getTweets()
+
+        refreshControl.endRefreshing()
     }
 
     /*
