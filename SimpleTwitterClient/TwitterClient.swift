@@ -8,9 +8,9 @@
 
 import Alamofire
 import OAuthSwift
-import OAuthSwiftAlamofire
+import TwitterAPI
 
-class TwitterClient: SessionManager {
+class TwitterClient {
 
     static let sharedInstance = TwitterClient()
 
@@ -18,21 +18,28 @@ class TwitterClient: SessionManager {
 
     func authTwitterClient(sender: UIViewController, completion: @escaping () -> Void) {
         oauthSwift.authorizeURLHandler = SafariURLHandler(viewController: sender, oauthSwift: oauthSwift)
+        oauthSwift.authorize(withCallbackURL: URL(string: "simple-twitter-client://oauth-callback/twitter")!, success: { (credential, response, parameters) in
 
-        self.adapter = oauthSwift.requestAdapter
+            let client = OAuthClient(consumerKey: consumerKey, consumerSecret: consumerSecret, accessToken: credential.oauthToken, accessTokenSecret: credential.oauthTokenSecret)
+            let string = client.serialize
+            defaults.set(string, forKey: "OAuthClient")
 
-        if let url = URL(string: "simple-twitter-client://oauth-callback/twitter") {
-            oauthSwift.authorize(withCallbackURL: url, success: { (credential, response, parameters) in
-                print("authorized")
-                completion()
-            }) { (error) in
-                print("not authorized - \(error.localizedDescription)")
-            }
+            self.getCurrentUser(completion: { (user: User?) in
+                User.currentUser = user
+            })
+
+            completion()
+
+        }) { (error) in
+            print(error.localizedDescription)
         }
     }
 
-    func getCurrentAccount(completion: @escaping (User?) -> Void) {
-        self.request("https://api.twitter.com/1.1/account/verify_credentials.json").validate().responseJSON(completionHandler: { (response) in
+    func getCurrentUser(completion: @escaping (User?) -> Void) {
+        let string = defaults.object(forKey: "OAuthClient") as! String
+        let client = ClientDeserializer.deserialize(string)
+
+        Alamofire.request(client.makeRequest(.GET, url: "https://api.twitter.com/1.1/account/verify_credentials.json", parameters: [:])).validate().responseJSON { (response) in
             switch response.result {
             case .success:
                 if let response = response.result.value as? NSDictionary {
@@ -41,11 +48,14 @@ class TwitterClient: SessionManager {
             case .failure(let error):
                 print(error.localizedDescription)
             }
-        })
+        }
     }
 
     func getHomeTimeline(completion: @escaping ([Tweet]?) -> Void) {
-        self.request("https://api.twitter.com/1.1/statuses/home_timeline.json").validate().responseJSON(completionHandler: { (response) in
+        let string = defaults.object(forKey: "OAuthClient") as! String
+        let client = ClientDeserializer.deserialize(string)
+
+        Alamofire.request(client.makeRequest(.GET, url: "https://api.twitter.com/1.1/statuses/home_timeline.json", parameters: [:])).validate().responseJSON { (response) in
             switch response.result {
             case .success:
                 if let response = response.result.value as? [NSDictionary] {
@@ -54,7 +64,7 @@ class TwitterClient: SessionManager {
             case .failure (let error):
                 print(error.localizedDescription)
             }
-        })
+        }
     }
 
 }

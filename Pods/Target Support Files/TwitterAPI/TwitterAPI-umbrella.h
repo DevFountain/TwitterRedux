@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double OAuthSwiftAlamofireVersionNumber;
-FOUNDATION_EXPORT const unsigned char OAuthSwiftAlamofireVersionString[];
+FOUNDATION_EXPORT double TwitterAPIVersionNumber;
+FOUNDATION_EXPORT const unsigned char TwitterAPIVersionString[];
 
