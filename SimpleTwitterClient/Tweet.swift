@@ -12,8 +12,11 @@ class Tweet: NSObject {
 
     var profileImageURL: URL?
     var screenName: String?
+    var name: String?
     var createdAt: Date?
     var text: String?
+    var id: Int?
+    var id_str: String?
 
     init(dictionary: NSDictionary) {
         let user = dictionary["user"] as? NSDictionary
@@ -22,7 +25,9 @@ class Tweet: NSObject {
             profileImageURL = URL(string: profileImageURLString)
         }
 
-        screenName = user?["screen_name"] as? String
+        name = user?["name"] as? String
+
+        screenName = "@\((user?["screen_name"] as? String)!)"
 
         if let createdAtString = dictionary["created_at"] as? String {
             let formatter = DateFormatter()
@@ -31,6 +36,10 @@ class Tweet: NSObject {
         }
 
         text = dictionary["text"] as? String
+
+        id = dictionary["id"] as? Int
+
+        id_str = dictionary["id_str"] as? String
     }
 
     class func getTweets(dictionaries: [NSDictionary]) -> [Tweet] {

@@ -18,6 +18,8 @@
 		E9425ED11EA07DB9008CE018 /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9425ED01EA07DB9008CE018 /* TweetsViewController.swift */; };
 		E9425ED41EA07E83008CE018 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9425ED31EA07E83008CE018 /* TweetCell.swift */; };
 		E9A093F41EA2B715009F3F6A /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A093F31EA2B715009F3F6A /* ComposeViewController.swift */; };
+		E9ABA0D71EA2E08D00901849 /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABA0D61EA2E08D00901849 /* TweetViewController.swift */; };
+		E9ABA0DA1EA3308900901849 /* SimpleTwitterClient.gif in Resources */ = {isa = PBXBuildFile; fileRef = E9ABA0D81EA3300900901849 /* SimpleTwitterClient.gif */; };
 		E9D19D7C1E9F0C4A00FBF503 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D19D7B1E9F0C4A00FBF503 /* User.swift */; };
 		E9D19D7E1E9F0C5000FBF503 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D19D7D1E9F0C5000FBF503 /* Tweet.swift */; };
 		EEB8D252E56DCC163E82E758 /* Pods_SimpleTwitterClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2B3AF902189D8D2B4331 /* Pods_SimpleTwitterClient.framework */; };
@@ -41,6 +43,8 @@
 		E9425ED01EA07DB9008CE018 /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		E9425ED31EA07E83008CE018 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		E9A093F31EA2B715009F3F6A /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		E9ABA0D61EA2E08D00901849 /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
+		E9ABA0D81EA3300900901849 /* SimpleTwitterClient.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SimpleTwitterClient.gif; sourceTree = "<group>"; };
 		E9D19D7B1E9F0C4A00FBF503 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E9D19D7D1E9F0C5000FBF503 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +83,7 @@
 			children = (
 				E92BF73F1E9ED49C0055AE49 /* Podfile.lock */,
 				E92BF7411E9ED4B00055AE49 /* README.md */,
+				E9ABA0D81EA3300900901849 /* SimpleTwitterClient.gif */,
 				E917A0CB1E9ED22100579A0C /* SimpleTwitterClient */,
 				E917A0CA1E9ED22100579A0C /* Products */,
 				93FE7E448C856EA6F86C6226 /* Pods */,
@@ -124,6 +129,7 @@
 			children = (
 				E92BF7381E9ED3420055AE49 /* LoginViewController.swift */,
 				E9425ED01EA07DB9008CE018 /* TweetsViewController.swift */,
+				E9ABA0D61EA2E08D00901849 /* TweetViewController.swift */,
 				E9A093F31EA2B715009F3F6A /* ComposeViewController.swift */,
 			);
 			name = "View Controllers";
@@ -210,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E917A0D71E9ED22100579A0C /* LaunchScreen.storyboard in Resources */,
+				E9ABA0DA1EA3308900901849 /* SimpleTwitterClient.gif in Resources */,
 				E917A0D41E9ED22100579A0C /* Assets.xcassets in Resources */,
 				E92BF7401E9ED49C0055AE49 /* Podfile.lock in Resources */,
 				E917A0D21E9ED22100579A0C /* Main.storyboard in Resources */,
@@ -273,6 +280,7 @@
 			files = (
 				E9A093F41EA2B715009F3F6A /* ComposeViewController.swift in Sources */,
 				E92BF73E1E9ED3620055AE49 /* TwitterClient.swift in Sources */,
+				E9ABA0D71EA2E08D00901849 /* TweetViewController.swift in Sources */,
 				E92BF7391E9ED3420055AE49 /* LoginViewController.swift in Sources */,
 				E92BF73C1E9ED3560055AE49 /* ApiKey.swift in Sources */,
 				E9425ED41EA07E83008CE018 /* TweetCell.swift in Sources */,

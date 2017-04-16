@@ -19,7 +19,7 @@ class TweetsViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
 
-        getTweets()
+        getHomeTimeline()
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,11 +55,9 @@ class TweetsViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
-    }
-
-    func getTweets() {
+    @IBAction func unwindToTweetsViewController(segue: UIStoryboardSegue) {}
+    
+    func getHomeTimeline() {
         Tweet.getHomeTimeline { (tweets: [Tweet]?) in
             self.tweets = tweets
             self.tableView.reloadData()
@@ -67,19 +65,27 @@ class TweetsViewController: UITableViewController {
     }
 
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
-        getTweets()
-
+        getHomeTimeline()
         refreshControl.endRefreshing()
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowTweet" {
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
+
+            let tweetViewController = segue.destination as! TweetViewController
+            tweetViewController.tweet = tweets[(indexPath?.row)!]
+        }
+
+        if segue.identifier == "Logout" {
+            defaults.removeObject(forKey: "CurrentUserData")
+            defaults.removeObject(forKey: "OAuthClient")
+        }
     }
-    */
 
 }
+

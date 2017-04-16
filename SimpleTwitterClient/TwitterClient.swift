@@ -81,5 +81,33 @@ class TwitterClient {
         }
     }
 
+    func postRetweet(id: Int) {
+        let string = defaults.object(forKey: "OAuthClient") as! String
+        let client = ClientDeserializer.deserialize(string)
+
+        Alamofire.request(client.makeRequest(.POST, url: "https://api.twitter.com/1.1/statuses/retweet/\(id).json", parameters: [:])).validate().responseData { (response) in
+            switch response.result {
+            case .success:
+                print("success")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    func postFavorite(parameters: Dictionary<String, String>) {
+        let string = defaults.object(forKey: "OAuthClient") as! String
+        let client = ClientDeserializer.deserialize(string)
+
+        Alamofire.request(client.makeRequest(.POST, url: "https://api.twitter.com/1.1/favorites/create.json", parameters: parameters)).validate().responseData { (response) in
+            switch response.result {
+            case .success:
+                print("success")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
 }
 

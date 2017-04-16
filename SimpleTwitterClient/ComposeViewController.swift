@@ -6,8 +6,8 @@
 //  Copyright © 2017 DevFountain LLC. All rights reserved.
 //
 
-import AlamofireImage
 import UIKit
+import AlamofireImage
 
 class ComposeViewController: UIViewController {
 
@@ -15,22 +15,43 @@ class ComposeViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var composeTextView: UITextView!
+
+    var parameters: [String: String] = [:]
+
+    var replyToScreenName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        userProfileImageView.af_setImage(withURL: (User.currentUser?.profileUrl)!, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: false)
-        userProfileImageView.layer.cornerRadius = 5
-        userProfileImageView.layer.masksToBounds = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTap))
 
-        nameLabel.text = User.currentUser?.name
-        screenNameLabel.text = User.currentUser?.screenName
+        let user = User.currentUser
+
+        userProfileImageView.af_setImage(withURL: (user?.profileUrl)!, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: false)
+        userProfileImageView.layer.cornerRadius = 5
+
+        nameLabel.text = user?.name
+        screenNameLabel.text = user?.screenName
+
+        if !parameters.isEmpty {
+            navigationItem.leftBarButtonItem = nil
+            composeTextView.text = "\(replyToScreenName) "
+        }
 
         composeTextView.layer.borderColor = UIColor.black.cgColor
         composeTextView.layer.cornerRadius = 5
         composeTextView.layer.borderWidth = 1/3
-        composeTextView.layer.masksToBounds = true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        composeTextView.becomeFirstResponder()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        composeTextView.resignFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,25 +59,19 @@ class ComposeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelButtonTap(_ sender: Any) {
+    func cancelButtonTap() {
         dismiss(animated: true)
     }
 
-    @IBAction func tweetButtonTap(_ sender: Any) {
-        dismiss(animated: true) {
-            let parameters = ["status": "\(self.composeTextView.text!)"]
-            TwitterClient.sharedInstance.postStatusUpdate(parameters: parameters)
-        }
-    }
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "Tweet" {
+            parameters["status"] = composeTextView.text
+            TwitterClient.sharedInstance.postStatusUpdate(parameters: parameters)
+        }
     }
-    */
 
 }
+

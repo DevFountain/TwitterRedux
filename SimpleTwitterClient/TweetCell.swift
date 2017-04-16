@@ -19,11 +19,12 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             userProfileImageView.image = nil
+
             if let profileImageURL = tweet.profileImageURL {
                 userProfileImageView.af_setImage(withURL: profileImageURL, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: true)
             }
+
             userProfileImageView.layer.cornerRadius = 5
-            userProfileImageView.layer.masksToBounds = true
 
             screenNameLabel.text = tweet.screenName
 

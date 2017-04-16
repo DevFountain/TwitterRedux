@@ -14,7 +14,7 @@ The following **required** functionality is completed:
 - [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.  In other words, design the custom cell with the proper Auto Layout settings.  You will also need to augment the model classes.
 - [x] User can pull to refresh.
 - [x] User can compose a new tweet by tapping on a compose button.
-- [ ] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
 
 The following **optional** features are implemented:
 
@@ -33,18 +33,18 @@ The following **additional** features are implemented:
 <!---->
 <!--1.-->
 <!--2.-->
-<!---->
-<!--## Video Walkthrough-->
-<!---->
-<!--Here's a walkthrough of implemented user stories:-->
-<!---->
-<!--<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />-->
-<!---->
-<!--GIF created with [LiceCap](http://www.cockos.com/licecap/).-->
-<!---->
-<!--## Notes-->
-<!---->
-<!--Describe any challenges encountered while building the app.-->
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='SimpleTwitterClient.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Notes
+
+It was difficult to figure out how to persist the user across app restarts.
 
 ## License
 
