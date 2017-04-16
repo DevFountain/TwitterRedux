@@ -187,7 +187,6 @@
 				TargetAttributes = {
 					E917A0C81E9ED22100579A0C = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = X9M5Y5BW7N;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -411,7 +410,7 @@
 			baseConfigurationReference = CF6012F061AF549238B452C7 /* Pods-SimpleTwitterClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = X9M5Y5BW7N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SimpleTwitterClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devfountain.SimpleTwitterClient;
@@ -425,7 +424,7 @@
 			baseConfigurationReference = DB67D84D0AD8DAC71CC65CE1 /* Pods-SimpleTwitterClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = X9M5Y5BW7N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SimpleTwitterClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devfountain.SimpleTwitterClient;
