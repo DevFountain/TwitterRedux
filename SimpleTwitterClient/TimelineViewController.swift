@@ -1,5 +1,5 @@
 //
-//  TweetsViewController.swift
+//  TimelineViewController.swift
 //  SimpleTwitterClient
 //
 //  Created by Curtis Wilcox on 4/13/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UITableViewController {
+class TimelineViewController: UITableViewController {
 
     var tweets: [Tweet]!
 
@@ -46,7 +46,7 @@ class TweetsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! TweetCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TweetCell
 
         cell.tweet = tweets[indexPath.row]
 
@@ -55,7 +55,7 @@ class TweetsViewController: UITableViewController {
         return cell
     }
 
-    @IBAction func unwindToTweetsViewController(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToTimeline(segue: UIStoryboardSegue) {}
     
     func getHomeTimeline() {
         Tweet.getHomeTimeline { (tweets: [Tweet]?) in
@@ -79,11 +79,6 @@ class TweetsViewController: UITableViewController {
 
             let tweetViewController = segue.destination as! TweetViewController
             tweetViewController.tweet = tweets[(indexPath?.row)!]
-        }
-
-        if segue.identifier == "Logout" {
-            defaults.removeObject(forKey: "CurrentUserData")
-            defaults.removeObject(forKey: "OAuthClient")
         }
     }
 

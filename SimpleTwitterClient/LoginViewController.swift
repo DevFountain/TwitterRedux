@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if defaults.object(forKey: "CurrentUserData") as? Data != nil {
-            performSegue(withIdentifier: "PresentTweets", sender: self)
+            performSegue(withIdentifier: "PresentMenu", sender: self)
         }
     }
 
@@ -29,11 +29,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTap(_ sender: Any) {
         TwitterClient.sharedInstance.getAuthorization(sender: self) {
-            self.performSegue(withIdentifier: "PresentTweets", sender: self)
+            self.performSegue(withIdentifier: "PresentMenu", sender: self)
         }
     }
-
-    @IBAction func logout(segue: UIStoryboardSegue) {}
 
 }
 
