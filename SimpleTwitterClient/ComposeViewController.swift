@@ -6,8 +6,8 @@
 //  Copyright © 2017 DevFountain LLC. All rights reserved.
 //
 
-import UIKit
 import AlamofireImage
+import UIKit
 
 class ComposeViewController: UIViewController {
 
@@ -28,7 +28,7 @@ class ComposeViewController: UIViewController {
 
         let user = User.currentUser
 
-        userProfileImageView.af_setImage(withURL: (user?.profileUrl)!, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: false)
+        userProfileImageView.af_setImage(withURL: (user?.profileImageUrl)!, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: false)
         userProfileImageView.layer.cornerRadius = 5
 
         nameLabel.text = user?.name

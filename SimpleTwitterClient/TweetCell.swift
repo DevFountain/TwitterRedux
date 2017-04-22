@@ -6,8 +6,8 @@
 //  Copyright © 2017 DevFountain LLC. All rights reserved.
 //
 
-import UIKit
 import AlamofireImage
+import UIKit
 
 class TweetCell: UITableViewCell {
 
@@ -19,11 +19,9 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             userProfileImageView.image = nil
-
-            if let profileImageURL = tweet.profileImageURL {
-                userProfileImageView.af_setImage(withURL: profileImageURL, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: true)
+            if let profileImageUrl = tweet.profileImageUrl {
+                userProfileImageView.af_setImage(withURL: profileImageUrl, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: true)
             }
-
             userProfileImageView.layer.cornerRadius = 5
 
             screenNameLabel.text = tweet.screenName

@@ -10,7 +10,7 @@ import UIKit
 
 class Tweet: NSObject {
 
-    var profileImageURL: URL?
+    var profileImageUrl: URL?
     var screenName: String?
     var name: String?
     var createdAt: Date?
@@ -21,8 +21,8 @@ class Tweet: NSObject {
     init(dictionary: NSDictionary) {
         let user = dictionary["user"] as? NSDictionary
 
-        if let profileImageURLString = user?["profile_image_url_https"] as? String {
-            profileImageURL = URL(string: profileImageURLString)
+        if let profileImageUrlString = user?["profile_image_url_https"] as? String {
+            profileImageUrl = URL(string: profileImageUrlString)
         }
 
         name = user?["name"] as? String
@@ -55,6 +55,10 @@ class Tweet: NSObject {
 
     static func getHomeTimeline(completion: @escaping ([Tweet]?) -> Void) {
         _ = TwitterClient.sharedInstance.getHomeTimeline(completion: completion)
+    }
+
+    static func getUserTimeline(parameters: Dictionary<String, String>, completion: @escaping ([Tweet]?) -> Void) {
+        _ = TwitterClient.sharedInstance.getUserTimeline(parameters: parameters, completion: completion)
     }
 
 }

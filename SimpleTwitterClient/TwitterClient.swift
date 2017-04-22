@@ -109,5 +109,21 @@ class TwitterClient {
         }
     }
 
+    func getUserTimeline(parameters: Dictionary<String, String>, completion: @escaping ([Tweet]?) -> Void) {
+        let string = defaults.object(forKey: "OAuthClient") as! String
+        let client = ClientDeserializer.deserialize(string)
+
+        Alamofire.request(client.makeRequest(.GET, url: "https://api.twitter.com/1.1/statuses/user_timeline.json", parameters: parameters)).validate().responseJSON { (response) in
+            switch response.result {
+            case .success:
+                if let response = response.result.value as? [NSDictionary] {
+                    completion(Tweet.getTweets(dictionaries: response))
+                }
+            case .failure (let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
 }
 

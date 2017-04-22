@@ -27,7 +27,7 @@ class TweetViewController: UIViewController {
 
         let tweet = self.tweet
 
-        userProfileImageView.af_setImage(withURL: (tweet?.profileImageURL)!, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: false)
+        userProfileImageView.af_setImage(withURL: (tweet?.profileImageUrl)!, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: false)
         userProfileImageView.layer.cornerRadius = 5
 
         nameLabel.text = tweet?.name
