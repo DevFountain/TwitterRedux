@@ -18,6 +18,8 @@ class ComposeViewController: UIViewController {
 
     var parameters: [String: String] = [:]
 
+    var isReplying = false
+
     var replyToScreenName = ""
     
     override func viewDidLoad() {
@@ -60,9 +62,13 @@ class ComposeViewController: UIViewController {
     }
     
     @IBAction func tweetButtonTap(_ sender: Any) {
-        dismiss(animated: true) { 
-            self.parameters["status"] = self.composeTextView.text
-            Tweet.postStatusUpdate(parameters: self.parameters)
+        if isReplying {
+            performSegue(withIdentifier: "UnwindToTimeline", sender: self)
+        } else {
+            dismiss(animated: true) {
+                self.parameters["status"] = self.composeTextView.text
+                Tweet.postStatusUpdate(parameters: self.parameters)
+            }
         }
     }
 

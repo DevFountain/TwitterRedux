@@ -20,7 +20,7 @@ class TweetCell: UITableViewCell {
         didSet {
             userProfileImageView.image = nil
             if let profileImageUrl = tweet.profileImageUrl {
-                userProfileImageView.af_setImage(withURL: profileImageUrl, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: true)
+                userProfileImageView.af_setImage(withURL: profileImageUrl, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: false)
             }
             userProfileImageView.layer.cornerRadius = 5
 

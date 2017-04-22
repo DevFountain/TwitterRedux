@@ -35,7 +35,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             navigationItem.title = userView.user.name
             parameters["screen_name"] = userView.user.screenName
         }
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         getUserTimeline()
     }
 

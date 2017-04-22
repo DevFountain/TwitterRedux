@@ -22,13 +22,16 @@ class UserView: UIView {
     var user: User! {
         didSet {
             if let headerImageUrl = user.headerImageUrl {
-                headerImageView.af_setImage(withURL: headerImageUrl, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: true)
+                headerImageView.af_setImage(withURL: headerImageUrl, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: false)
             }
 
             if let profileImageUrl = user.profileImageUrl {
-                userProfileImageView.af_setImage(withURL: profileImageUrl, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: true)
+                userProfileImageView.af_setImage(withURL: profileImageUrl, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: false)
             }
+            userProfileImageView.layer.borderColor = UIColor.white.cgColor
+            userProfileImageView.layer.borderWidth = 3
             userProfileImageView.layer.cornerRadius = 5
+            userProfileImageView.layer.masksToBounds = true
 
             nameLabel.text = user.name
 

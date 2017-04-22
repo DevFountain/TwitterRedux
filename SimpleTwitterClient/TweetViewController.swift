@@ -60,6 +60,7 @@ class TweetViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Reply" {
             let composeViewController = segue.destination as! ComposeViewController
+            composeViewController.isReplying = true
             composeViewController.replyToScreenName = tweet.screenName!
             composeViewController.parameters = ["in_reply_to_status_id": tweet.id_str!]
         }
