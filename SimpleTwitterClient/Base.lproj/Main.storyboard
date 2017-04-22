@@ -81,6 +81,7 @@
                             <constraint firstAttribute="trailing" secondItem="PMe-Ri-aVe" secondAttribute="trailing" id="HxI-fJ-fbr"/>
                             <constraint firstItem="PMe-Ri-aVe" firstAttribute="leading" secondItem="Y5B-0H-c38" secondAttribute="leading" id="VCW-5e-PHf"/>
                             <constraint firstAttribute="trailing" secondItem="7LY-hk-Yx7" secondAttribute="trailing" id="VOc-6h-Pms"/>
+                            <constraint firstItem="PMe-Ri-aVe" firstAttribute="width" secondItem="Y5B-0H-c38" secondAttribute="width" id="XBi-VB-92y"/>
                             <constraint firstItem="9FC-og-cba" firstAttribute="top" secondItem="7LY-hk-Yx7" secondAttribute="bottom" id="Ypc-WT-ygH"/>
                             <constraint firstItem="7LY-hk-Yx7" firstAttribute="leading" secondItem="Y5B-0H-c38" secondAttribute="leading" id="hfg-aW-EhY"/>
                             <constraint firstItem="7LY-hk-Yx7" firstAttribute="top" secondItem="Y5B-0H-c38" secondAttribute="topMargin" id="yaO-Rl-uBB"/>
@@ -335,7 +336,13 @@
                             <constraint firstItem="tdc-UX-Amk" firstAttribute="top" secondItem="jTg-yd-nOP" secondAttribute="bottom" constant="8" id="hZI-fb-OVR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="0mK-Kb-UUH"/>
+                    <navigationItem key="navigationItem" id="0mK-Kb-UUH">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="qU7-u1-OZg">
+                            <connections>
+                                <segue destination="wXe-sr-8cx" kind="presentation" identifier="ComposeTweet" id="rUN-J7-OVJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="tdc-UX-Amk" id="lv1-lm-9mw"/>
                         <outlet property="userView" destination="jTg-yd-nOP" id="N06-jD-hhR"/>
@@ -489,18 +496,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Compose" id="Hnq-s3-bFs">
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="dm6-bd-eNs"/>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="dm6-bd-eNs">
+                            <connections>
+                                <action selector="tweetButtonTap:" destination="dKe-by-JNE" id="hwI-tj-B0F"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="composeTextView" destination="PhX-qD-kyb" id="eX4-sD-css"/>
                         <outlet property="nameLabel" destination="OVi-40-vSF" id="3gI-Jr-mtk"/>
                         <outlet property="screenNameLabel" destination="LMN-VI-XAX" id="YPJ-Kn-rXI"/>
                         <outlet property="userProfileImageView" destination="V9O-Xm-1Us" id="auL-Lc-GcO"/>
-                        <segue destination="PXS-ab-zNR" kind="unwind" identifier="Tweet" unwindAction="unwindToTimelineWithSegue:" id="cAS-aD-AXV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XtW-3d-5HJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="PXS-ab-zNR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3140" y="946.77661169415296"/>
         </scene>
@@ -716,7 +725,13 @@
                             <outlet property="delegate" destination="N8B-Mx-kxm" id="svj-VM-q2a"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Mentions" id="Xfw-GQ-2B0"/>
+                    <navigationItem key="navigationItem" title="Mentions" id="Xfw-GQ-2B0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="XI8-EI-zbv">
+                            <connections>
+                                <segue destination="wXe-sr-8cx" kind="presentation" identifier="ComposeTweet" id="ByG-Id-8TF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQG-00-a2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -768,5 +783,6 @@
         <segue reference="29e-x2-SfM"/>
         <segue reference="gLo-4H-3XY"/>
         <segue reference="AcL-bk-u3Z"/>
+        <segue reference="rUN-J7-OVJ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -59,18 +59,15 @@ class ComposeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func cancelButtonTap() {
-        dismiss(animated: true)
+    @IBAction func tweetButtonTap(_ sender: Any) {
+        dismiss(animated: true) { 
+            self.parameters["status"] = self.composeTextView.text
+            Tweet.postStatusUpdate(parameters: self.parameters)
+        }
     }
 
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Tweet" {
-            parameters["status"] = composeTextView.text
-            TwitterClient.sharedInstance.postStatusUpdate(parameters: parameters)
-        }
+    func cancelButtonTap() {
+        dismiss(animated: true)
     }
 
 }

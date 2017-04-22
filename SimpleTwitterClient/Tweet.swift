@@ -57,12 +57,24 @@ class Tweet: NSObject {
         _ = TwitterClient.sharedInstance.getHomeTimeline(completion: completion)
     }
 
+    static func getMentionsTimeline(completion: @escaping ([Tweet]?) -> Void) {
+        _ = TwitterClient.sharedInstance.getMentionsTimeline(completion: completion)
+    }
+
     static func getUserTimeline(parameters: Dictionary<String, String>, completion: @escaping ([Tweet]?) -> Void) {
         _ = TwitterClient.sharedInstance.getUserTimeline(parameters: parameters, completion: completion)
     }
 
-    static func getMentionsTimeline(completion: @escaping ([Tweet]?) -> Void) {
-        _ = TwitterClient.sharedInstance.getMentionsTimeline(completion: completion)
+    static func postFavorite(parameters: Dictionary<String, String>) {
+        _ = TwitterClient.sharedInstance.postFavorite(parameters: parameters)
+    }
+
+    static func postRetweet(id: Int) {
+        _ = TwitterClient.sharedInstance.postRetweet(id: id)
+    }
+
+    static func postStatusUpdate(parameters: Dictionary<String, String>) {
+        _ = TwitterClient.sharedInstance.postStatusUpdate(parameters: parameters)
     }
 
 }

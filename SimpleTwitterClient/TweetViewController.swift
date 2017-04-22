@@ -51,7 +51,7 @@ class TweetViewController: UIViewController {
     }
 
     @IBAction func likeButtonTap(_ sender: Any) {
-        TwitterClient.sharedInstance.postFavorite(parameters: ["id": "\(tweet.id!)"])
+        Tweet.postFavorite(parameters: ["id": "\(tweet.id!)"])
     }
     
     // MARK: - Navigation

@@ -65,8 +65,8 @@ class User: NSObject {
         }
     }
 
-    static func verifyCredentials(completion: @escaping (User?) -> Void) {
-        _ = TwitterClient.sharedInstance.verifyCredentials(completion: completion)
+    static func getAuthorization(sender: UIViewController, completion: @escaping () -> Void) {
+        _ = TwitterClient.sharedInstance.getAuthorization(sender: sender, completion: completion)
     }
 
     static func showUser(parameters: Dictionary<String, String>, completion: @escaping (User?) -> Void) {

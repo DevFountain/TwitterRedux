@@ -90,11 +90,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)
+        if segue.identifier == "ShowTweet" {
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
 
-        let tweetViewController = segue.destination as! TweetViewController
-        tweetViewController.tweet = tweets[(indexPath?.row)!]
+            let tweetViewController = segue.destination as! TweetViewController
+            tweetViewController.tweet = tweets[(indexPath?.row)!]
+        }
     }
 
 }
