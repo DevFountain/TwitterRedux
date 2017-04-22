@@ -27,7 +27,7 @@ class Tweet: NSObject {
 
         name = user?["name"] as? String
 
-        screenName = "@\((user?["screen_name"] as? String)!)"
+        screenName = (user?["screen_name"] as? String)!
 
         if let createdAtString = dictionary["created_at"] as? String {
             let formatter = DateFormatter()
@@ -59,6 +59,10 @@ class Tweet: NSObject {
 
     static func getUserTimeline(parameters: Dictionary<String, String>, completion: @escaping ([Tweet]?) -> Void) {
         _ = TwitterClient.sharedInstance.getUserTimeline(parameters: parameters, completion: completion)
+    }
+
+    static func getMentionsTimeline(completion: @escaping ([Tweet]?) -> Void) {
+        _ = TwitterClient.sharedInstance.getMentionsTimeline(completion: completion)
     }
 
 }

@@ -45,7 +45,7 @@ class TwitterClient {
                 if let response = response.result.value as? NSDictionary {
                     completion(User(dictionary: response))
                 }
-            case .failure(let error):
+            case .failure (let error):
                 print(error.localizedDescription)
             }
         }
@@ -75,7 +75,7 @@ class TwitterClient {
             switch response.result {
             case .success:
                 print("success")
-            case .failure(let error):
+            case .failure (let error):
                 print(error.localizedDescription)
             }
         }
@@ -89,7 +89,7 @@ class TwitterClient {
             switch response.result {
             case .success:
                 print("success")
-            case .failure(let error):
+            case .failure (let error):
                 print(error.localizedDescription)
             }
         }
@@ -103,7 +103,7 @@ class TwitterClient {
             switch response.result {
             case .success:
                 print("success")
-            case .failure(let error):
+            case .failure (let error):
                 print(error.localizedDescription)
             }
         }
@@ -118,6 +118,38 @@ class TwitterClient {
             case .success:
                 if let response = response.result.value as? [NSDictionary] {
                     completion(Tweet.getTweets(dictionaries: response))
+                }
+            case .failure (let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    func getMentionsTimeline(completion: @escaping ([Tweet]?) -> Void) {
+        let string = defaults.object(forKey: "OAuthClient") as! String
+        let client = ClientDeserializer.deserialize(string)
+
+        Alamofire.request(client.makeRequest(.GET, url: "https://api.twitter.com/1.1/statuses/mentions_timeline.json", parameters: [:])).validate().responseJSON { (response) in
+            switch response.result {
+            case .success:
+                if let response = response.result.value as? [NSDictionary] {
+                    completion(Tweet.getTweets(dictionaries: response))
+                }
+            case .failure (let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    func showUser(parameters: Dictionary<String, String>, completion: @escaping (User?) -> Void) {
+        let string = defaults.object(forKey: "OAuthClient") as! String
+        let client = ClientDeserializer.deserialize(string)
+
+        Alamofire.request(client.makeRequest(.GET, url: "https://api.twitter.com/1.1/users/show.json", parameters: parameters)).validate().responseJSON { (response) in
+            switch response.result {
+            case .success:
+                if let response = response.result.value as? NSDictionary {
+                    completion(User(dictionary: response))
                 }
             case .failure (let error):
                 print(error.localizedDescription)

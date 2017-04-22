@@ -13,8 +13,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var userView: UserView!
     @IBOutlet weak var tableView: UITableView!
 
-    var user: User!
-
     var parameters: [String: String] = [:]
 
     var tweets: [Tweet]!
@@ -23,15 +21,20 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        navigationItem.title = User.currentUser?.name
-
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
 
-        userView.user = user
-
-        parameters["screen_name"] = User.currentUser?.screenName!
+        if parameters["screen_name"] != nil {
+            User.showUser(parameters: parameters, completion: { (user: User?) in
+                self.userView.user = user
+                self.navigationItem.title = self.userView.user.name
+            })
+        } else {
+            userView.user = User.currentUser
+            navigationItem.title = userView.user.name
+            parameters["screen_name"] = userView.user.screenName
+        }
 
         getUserTimeline()
     }
@@ -67,6 +70,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
     func getUserTimeline() {
         Tweet.getUserTimeline(parameters: parameters) { (tweets: [Tweet]?) in
             self.tweets = tweets
@@ -79,15 +86,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         refreshControl.endRefreshing()
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)
+
+        let tweetViewController = segue.destination as! TweetViewController
+        tweetViewController.tweet = tweets[(indexPath?.row)!]
     }
-    */
 
 }
 

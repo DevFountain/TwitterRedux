@@ -32,7 +32,7 @@ class TweetViewController: UIViewController {
 
         nameLabel.text = tweet?.name
 
-        screenNameLabel.text = tweet?.screenName
+        screenNameLabel.text = "@\((tweet?.screenName)!)"
 
         tweetTextLabel.text = tweet?.text
 

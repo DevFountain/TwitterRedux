@@ -32,11 +32,11 @@ class ComposeViewController: UIViewController {
         userProfileImageView.layer.cornerRadius = 5
 
         nameLabel.text = user?.name
-        screenNameLabel.text = user?.screenName
+        screenNameLabel.text = "@\((user?.screenName)!)"
 
         if !parameters.isEmpty {
             navigationItem.leftBarButtonItem = nil
-            composeTextView.text = "\(replyToScreenName) "
+            composeTextView.text = "@\(replyToScreenName) "
         }
 
         composeTextView.layer.borderColor = UIColor.black.cgColor

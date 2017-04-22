@@ -28,7 +28,7 @@ class User: NSObject {
 
         name = dictionary["name"] as? String
 
-        screenName = "@\((dictionary["screen_name"] as? String)!)"
+        screenName = (dictionary["screen_name"] as? String)!
 
         if let headerImageUrlString = dictionary["profile_background_image_url_https"] as? String {
             headerImageUrl = URL(string: headerImageUrlString)
@@ -67,6 +67,10 @@ class User: NSObject {
 
     static func verifyCredentials(completion: @escaping (User?) -> Void) {
         _ = TwitterClient.sharedInstance.verifyCredentials(completion: completion)
+    }
+
+    static func showUser(parameters: Dictionary<String, String>, completion: @escaping (User?) -> Void) {
+        _ = TwitterClient.sharedInstance.showUser(parameters: parameters, completion: completion)
     }
 
 }

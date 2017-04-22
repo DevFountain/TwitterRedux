@@ -12,6 +12,8 @@ class TimelineViewController: UITableViewController {
 
     var tweets: [Tweet]!
 
+    var indexPathRow: Int!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,12 +50,22 @@ class TimelineViewController: UITableViewController {
 
         cell.tweet = tweets[indexPath.row]
 
+        cell.userProfileImageView.tag = indexPath.row
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTapGesture(_:)))
+        cell.userProfileImageView.addGestureRecognizer(tapGesture)
+
         // Configure the cell...
 
         return cell
     }
 
     @IBAction func unwindToTimeline(segue: UIStoryboardSegue) {}
+
+    func onTapGesture(_ sender: UITapGestureRecognizer) {
+        indexPathRow = sender.view?.tag
+        performSegue(withIdentifier: "ShowProfile", sender: self)
+    }
     
     func getHomeTimeline() {
         Tweet.getHomeTimeline { (tweets: [Tweet]?) in
@@ -71,6 +83,11 @@ class TimelineViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowProfile" {
+            let profileViewController = segue.destination as! ProfileViewController
+            profileViewController.parameters["screen_name"] = tweets[indexPathRow].screenName
+        }
+
         if segue.identifier == "ShowTweet" {
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)

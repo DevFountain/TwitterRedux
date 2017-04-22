@@ -24,7 +24,7 @@ class TweetCell: UITableViewCell {
             }
             userProfileImageView.layer.cornerRadius = 5
 
-            screenNameLabel.text = tweet.screenName
+            screenNameLabel.text = "@\(tweet.screenName!)"
 
             if let date = tweet.createdAt {
                 createdAtLabel.text = DateFormatter.localizedString(from: date, dateStyle: .short, timeStyle: .none)

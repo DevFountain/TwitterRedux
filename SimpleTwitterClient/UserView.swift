@@ -21,8 +21,6 @@ class UserView: UIView {
 
     var user: User! {
         didSet {
-            user = User.currentUser
-
             if let headerImageUrl = user.headerImageUrl {
                 headerImageView.af_setImage(withURL: headerImageUrl, imageTransition: .crossDissolve(0.3), runImageTransitionIfCached: true)
             }
@@ -34,7 +32,7 @@ class UserView: UIView {
 
             nameLabel.text = user.name
 
-            screenNameLabel.text = user.screenName
+            screenNameLabel.text = "@\(user.screenName!)"
 
             if let tweetCount = user.tweetCount {
                 tweetsLabel.text = String(tweetCount)

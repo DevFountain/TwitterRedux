@@ -1,6 +1,6 @@
 # Project 4 - *Twitter Redux*
 
-Time spent: **7** hours spent in total
+Time spent: **12** hours spent in total
 
 ## User Stories
 
@@ -14,8 +14,8 @@ The following **required** functionality is completed:
     - [x] Contains the user header view
     - [x] Contains a section with the users basic stats: # tweets, # following, # followers
     - [x] Shows the user timeline
-- [ ] Home Timeline
-    - [ ] Tapping on a user image should bring up that user's profile page
+- [x] Home Timeline
+    - [x] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
 
