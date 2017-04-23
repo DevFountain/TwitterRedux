@@ -36,7 +36,7 @@ class ComposeViewController: UIViewController {
         nameLabel.text = user?.name
         screenNameLabel.text = "@\((user?.screenName)!)"
 
-        if !parameters.isEmpty {
+        if isReplying {
             navigationItem.leftBarButtonItem = nil
             composeTextView.text = "@\(replyToScreenName) "
         }
@@ -62,13 +62,14 @@ class ComposeViewController: UIViewController {
     }
     
     @IBAction func tweetButtonTap(_ sender: Any) {
+        parameters["status"] = composeTextView.text
+        print(parameters)
+        Tweet.postStatusUpdate(parameters: parameters)
+
         if isReplying {
             performSegue(withIdentifier: "UnwindToTimeline", sender: self)
         } else {
-            dismiss(animated: true) {
-                self.parameters["status"] = self.composeTextView.text
-                Tweet.postStatusUpdate(parameters: self.parameters)
-            }
+            dismiss(animated: true)
         }
     }
 
